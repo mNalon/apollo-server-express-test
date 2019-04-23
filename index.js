@@ -17,6 +17,7 @@ const typeDefs = gql`
     description: String
     thumbnail(size: String): String
     duration: Int
+    program: String
   }
 
   type Query {
