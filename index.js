@@ -1,21 +1,7 @@
-const express = require('express');
-const { ApolloServer, gql } = require('apollo-server-express');
-
-const getVideoById = (id) => ({
-	id, title: 'test', 
-	title: 'test',
-	description: 'test', 
-	thumbnail: 'http://foo.bar.br/description.jpeg',
-	duration: 123
-})
+import { ApolloServer, gql } from 'apollo-server'
 
 // Construct a schema, using GraphQL schema language
 const typeDefs = gql`
-  type Program {
-    id: ID!
-    title: String
-  }
-
   type Video {
     id: ID!
     title: String!
@@ -31,18 +17,12 @@ const typeDefs = gql`
   }
 `;
 
-// Provide resolver functions for your schema fields
 const resolvers = {
   Query: {
-    video: (root, {id}) => getVideoById(id),
-  },
-};
+    video: () => ({})
+  }
+}
 
-const server = new ApolloServer({ typeDefs, resolvers });
+const server = new ApolloServer({ typeDefs, resolvers })
 
-const app = express();
-server.applyMiddleware({ app });
-
-app.listen({ port: 4000 }, () =>
-  console.log(`🚀 Server ready at http://localhost:4000${server.graphqlPath}`)
-);
+server.listen().then(({ url }) => { console.log(`🚀  Server ready at ${url}`) })
