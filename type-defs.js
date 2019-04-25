@@ -19,6 +19,10 @@ const typeDefs = gql`
     video(id: ID!): Video
     program(id: ID!): Program
   }
+
+  type User {
+    lastWatchedVideos: [Video] @costFactor(value: 8)
+  }
 `;
 
 export default typeDefs
