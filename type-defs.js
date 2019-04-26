@@ -20,8 +20,8 @@ const typeDefs = gql`
     program(id: ID!): Program
   }
 
-  type User {
-    lastWatchedVideos: [Video] @costFactor(value: 8)
+  type User { 
+    lastWatchedVideos: [Video] @costFactor(value: 8) @cacheControl(maxAge: 5, scope: PRIVATE)
   }
 `;
 
