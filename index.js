@@ -22,6 +22,9 @@ const server = new ApolloServer({
     host: 'localhost',
     port: 6379
   }),
+  cacheControl: {
+    defaultMaxAge: 300
+  },
   validationRules: [createComplexityLimitRule(MAX_QUERY_COMPLEXITY, costs)], 
   dataSources: () => ({ 
     programs: new ProgramsDatasource(),
